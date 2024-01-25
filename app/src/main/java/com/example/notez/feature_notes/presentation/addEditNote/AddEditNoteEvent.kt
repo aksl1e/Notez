@@ -9,8 +9,6 @@ sealed class AddEditNoteEvent {
     data class EnteredContentText(val value: String): AddEditNoteEvent()
     data class ChangeContentTextFocus(val focusState: FocusState): AddEditNoteEvent()
 
-    data object PickPhoto: AddEditNoteEvent()
-
     data object SaveNote: AddEditNoteEvent()
 
 }

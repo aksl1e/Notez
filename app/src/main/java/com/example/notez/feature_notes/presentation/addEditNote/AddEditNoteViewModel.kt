@@ -1,13 +1,11 @@
 package com.example.notez.feature_notes.presentation.addEditNote
 
-import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.notez.feature_notes.domain.model.Content
 import com.example.notez.feature_notes.domain.model.InvalidNoteException
 import com.example.notez.feature_notes.domain.model.Note
 import com.example.notez.feature_notes.domain.use_cases.NoteUseCases
@@ -21,11 +19,11 @@ class AddEditNoteViewModel @Inject constructor(
     private val noteUseCases: NoteUseCases,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
     private val _state = mutableStateOf(AddEditNoteState())
     val state: State<AddEditNoteState> = _state
 
     private var currentNoteId: Int? = null
-
 
     init {
         savedStateHandle.get<Int>("noteId")?.let { noteId ->
@@ -44,9 +42,8 @@ class AddEditNoteViewModel @Inject constructor(
         _state.value = state.value.copy(
             titleState = note.title,
             titleHintVisibility = false,
-            contentTextState = note.content.text,
+            contentTextState = note.text,
             contentTextHintVisibility = false,
-            contentImagesState = note.content.images,
             dateState = note.date
         )
     }
@@ -75,21 +72,14 @@ class AddEditNoteViewModel @Inject constructor(
                             state.value.contentTextState.isBlank()
                 )
             }
-            is AddEditNoteEvent.PickPhoto -> {
-                _state.value = state.value.copy(
-                    contentImagesState = state.value.contentImagesState.plus(Uri.EMPTY)
-                )
-            }
+
             is AddEditNoteEvent.SaveNote -> {
                 viewModelScope.launch {
                     try {
                         noteUseCases.addNote(
                             Note(
                                 title = state.value.titleState,
-                                content = Content(
-                                    text = state.value.contentTextState,
-                                    images = state.value.contentImagesState
-                                ),
+                                text = state.value.contentTextState,
                                 date = LocalDateTime.now(),
                                 id = currentNoteId
                             )

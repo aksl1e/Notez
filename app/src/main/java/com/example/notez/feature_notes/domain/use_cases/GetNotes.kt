@@ -17,13 +17,15 @@ class GetNotes(
             when(noteOrder) {
                 is NoteOrder.Title -> {
                     if(keyWord != "") {
-                        notes.filter { it.title.contains(keyWord) || it.content.text.contains(keyWord) }
+                        notes.filter { it.title.lowercase().contains(keyWord.lowercase()) ||
+                                it.text.lowercase().contains(keyWord.lowercase()) }
                     } else
                         notes.sortedBy { it.title.lowercase() }
                 }
                 is NoteOrder.Date -> {
                     if(keyWord != "") {
-                        notes.filter { it.title.contains(keyWord) || it.content.text.contains(keyWord) }
+                        notes.filter { it.title.lowercase().contains(keyWord.lowercase()) ||
+                                it.text.lowercase().contains(keyWord.lowercase()) }
                     } else
                         notes.sortedByDescending { it.date }
                 }

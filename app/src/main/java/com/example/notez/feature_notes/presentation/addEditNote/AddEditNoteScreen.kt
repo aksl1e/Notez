@@ -29,10 +29,8 @@ fun AddEditNoteScreen(
     state: State<AddEditNoteState>,
     onEvent: (AddEditNoteEvent) -> Unit
 ) {
-
-
     Scaffold(
-        topBar = { AddEditTopBar(onEvent) },
+        topBar = { AddEditTopBar() },
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
@@ -62,7 +60,7 @@ fun AddEditNoteScreen(
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = state.value.dateState
-                    .format(DateTimeFormatter.ofPattern("dd:MM, HH:mm"))
+                    .format(DateTimeFormatter.ofPattern("dd.MM, HH:mm"))
                     .toString(),
                 style = MaterialTheme.typography.bodyMedium,
                 color = Color.Gray

@@ -102,7 +102,9 @@ fun TopBar(
                 )
             },
             trailingIcon = {
-                IconButton(onClick = { onEvent(NotesEvent.ClickTopBarSearch) }) {
+                IconButton(onClick = {
+                    onEvent(NotesEvent.ClickTopBarSearch)
+                }) {
                     Icon(
                         imageVector = Icons.Default.ExitToApp,
                         tint = MaterialTheme.colorScheme.primary,

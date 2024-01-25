@@ -49,6 +49,10 @@ class NotesViewModel @Inject constructor(
                 _state.value = state.value.copy(
                     topBarSearchShown = !state.value.topBarSearchShown
                 )
+                if(!state.value.topBarSearchShown)
+                    _state.value = state.value.copy(
+                        searchText = ""
+                    )
             }
 
             is NotesEvent.EnteredSearchText -> {

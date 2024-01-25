@@ -35,7 +35,7 @@ fun NoteItem(
         ){
             Text(
                 text = note.date
-                    .format(DateTimeFormatter.ofPattern("dd:MM, HH:mm"))
+                    .format(DateTimeFormatter.ofPattern("dd.MM, HH:mm"))
                     .toString(),
                 color = Color.LightGray,
                 style = MaterialTheme.typography.bodySmall,
@@ -52,7 +52,7 @@ fun NoteItem(
             )
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = note.content.text,
+                text = note.text,
                 color = Color.LightGray,
                 style = MaterialTheme.typography.bodySmall,
                 maxLines = 8,

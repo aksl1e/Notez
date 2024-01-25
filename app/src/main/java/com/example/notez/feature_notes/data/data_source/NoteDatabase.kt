@@ -3,7 +3,6 @@ package com.example.notez.feature_notes.data.data_source
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.notez.feature_notes.data.type_converters.ContentConverter
 import com.example.notez.feature_notes.data.type_converters.LocalDateTimeConverter
 import com.example.notez.feature_notes.domain.model.Note
 
@@ -12,8 +11,7 @@ import com.example.notez.feature_notes.domain.model.Note
     version = 1
 )
 @TypeConverters(
-    LocalDateTimeConverter::class,
-    ContentConverter::class
+    LocalDateTimeConverter::class
 )
 abstract class NoteDatabase : RoomDatabase() {
     abstract val noteDao: NoteDao

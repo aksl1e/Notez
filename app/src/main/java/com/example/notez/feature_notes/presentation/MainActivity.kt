@@ -25,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             NotezTheme {
                 Surface(
@@ -67,7 +68,7 @@ class MainActivity : ComponentActivity() {
                             AddEditNoteScreen(
                                 navController = navController,
                                 state = state,
-                                onEvent = viewModel::onEvent
+                                onEvent = viewModel::onEvent,
                             )
                         }
                     }
