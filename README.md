@@ -1,4 +1,4 @@
-NOTEZ
+# NOTEZ
 
 Simple android notes app. The most special about this app is it's structure. 
 - Google's Architecture with Data, Domain and Presenatation Layers
